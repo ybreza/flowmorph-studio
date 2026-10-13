@@ -17,6 +17,7 @@
 </p>
 
 <p align="center">
+  <a href="#visual-showcase">Visual Demo</a> &bull;
   <a href="#features">Features</a> &bull;
   <a href="#quick-start">Quick Start</a> &bull;
   <a href="#user-interface">User Interface</a> &bull;
@@ -33,6 +34,26 @@
 **FlowMorph Studio** is a high-performance video frame interpolation platform built entirely in Python. It converts standard 24 FPS or 30 FPS footage into silky smooth 60 FPS, 120 FPS, or 240 FPS video using OpenCV's Dense Inverse Search (DIS) optical flow engine.
 
 Unlike heavy deep-learning interpolation models that require gigabytes of neural weights and high-end CUDA GPUs, FlowMorph Studio runs directly on consumer CPUs with near-instant startup, predictable memory footprints, and mathematical stability.
+
+---
+
+## Visual Showcase
+
+Generative AI video pipelines (such as Google Flow) often produce footage at lower native framerates (e.g. 24 FPS) that can exhibit temporal stutter during fluid character movement. **FlowMorph Studio** calculates bidirectional motion fields to synthesize intermediate frames, elevating footage to fluid 60 FPS with occlusion-aware blending:
+
+<p align="center">
+  <img src="assets/demo_comparison.gif" alt="FlowMorph Studio 24 FPS vs 60 FPS Comparison" width="680" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/ybreza/flowmorph-studio/releases/download/v2.0.0/input_google_flow_24fps.mp4">
+    <img src="https://img.shields.io/badge/Download_Sample-Original_24_FPS_(2.4_MB)-2B2D42?style=flat-square" alt="Download Original 24 FPS" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/ybreza/flowmorph-studio/releases/download/v2.0.0/flowmorph_interpolated_60fps.mp4">
+    <img src="https://img.shields.io/badge/Download_Sample-FlowMorph_60_FPS_(18_MB)-FD6700?style=flat-square" alt="Download FlowMorph 60 FPS" />
+  </a>
+</p>
 
 ---
 
