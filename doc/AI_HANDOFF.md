@@ -145,17 +145,43 @@ python assets/generate_icons.py
 
 ---
 
-## 6. Recommended Future Enhancements (Non-Breaking)
+## 5. Verification & Testing
+
+To verify the installation and core engine integrity:
+
+```powershell
+# Run the test suite
+python -m pytest tests/test_interpolator.py -v
+
+# Verify GUI instantiation without launching mainloop
+python -c "from gui import FlowMorphApp; app = FlowMorphApp(); app.update_idletasks(); app.destroy(); print('GUI OK')"
+
+# Verify icon regeneration
+python assets/generate_icons.py
+
+# Build standalone executable (.exe)
+python -m PyInstaller FlowMorph-Studio.spec --clean
+```
+
+---
+
+## 6. Official Repository & Releases
+
+- **GitHub Repository**: [https://github.com/ybreza/flowmorph-studio](https://github.com/ybreza/flowmorph-studio)
+- **Releases & Binary Downloads**: [https://github.com/ybreza/flowmorph-studio/releases](https://github.com/ybreza/flowmorph-studio/releases)
+- **Standalone Binary**: `FlowMorph-Studio.exe` (Bundles Python runtime, OpenCV, CustomTkinter, and imageio-ffmpeg binary with zero host installation prerequisites).
+
+---
+
+## 7. Recommended Future Enhancements (Non-Breaking)
 
 If you are tasked with further expanding FlowMorph Studio, consider these safe additions:
 
-1. **Audio Passthrough via FFmpeg**:
-   - OpenCV `VideoWriter` strips audio streams. You can optionally use `ffmpeg` (if installed on the user's system) to mux the original audio back into the interpolated video stream.
-2. **Batch Queue**:
+1. **Batch Processing Queue**:
    - Add a multi-file queue list in a separate tab or drawer so users can interpolate a folder of video clips sequentially.
-3. **Hardware Acceleration Option**:
+2. **CUDA Optical Flow Backend**:
    - Provide an optional CuPy or OpenCV CUDA backend for DIS optical flow (`cv2.cuda_OpticalFlowDual_TVL1` or `cv2.cuda_FarnebackOpticalFlow`) if CUDA is available on the host machine.
-4. **Resolution Downscaling/Upscaling**:
+3. **Resolution Downscaling/Upscaling**:
    - Allow an optional output resolution selector (e.g. 50% downscale for ultra-fast previews).
 
 Always run `python -m pytest` after making modifications.
