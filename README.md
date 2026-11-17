@@ -27,6 +27,12 @@
   <a href="#license">License</a>
 </p>
 
+<p align="center">
+  <strong>Try it in your browser:</strong>
+  <a href="https://flowmorph.vercel.app/">flowmorph.vercel.app</a><br>
+  <sub>The same pipeline, ported line by line to C++ and WebAssembly. No install, no account, no upload.</sub>
+</p>
+
 ---
 
 ## Overview
