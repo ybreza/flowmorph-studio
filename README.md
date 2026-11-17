@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/ybreza/flowmorph-studio/releases/latest"><img src="https://img.shields.io/badge/Release-v2.0.0-FD6700?style=flat-square" alt="Latest Release" /></a>
+  <a href="https://flowmorph.vercel.app/"><img src="https://img.shields.io/badge/Web_App-Live-FD6700?style=flat-square" alt="Web App" /></a>
   <img src="https://img.shields.io/badge/Platform-Windows%20x64-2B2D42?style=flat-square" alt="Platform" />
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square" alt="Python 3.10+" />
   <img src="https://img.shields.io/badge/License-MIT-008080?style=flat-square" alt="License" />
@@ -18,7 +19,7 @@
 
 <p align="center">
   <a href="#visual-showcase">Visual Demo</a> &bull;
-  <a href="#features">Features</a> &bull;
+  <a href="#key-features">Features</a> &bull;
   <a href="#quick-start">Quick Start</a> &bull;
   <a href="#user-interface">User Interface</a> &bull;
   <a href="#mathematical-foundation">Algorithm</a> &bull;
@@ -40,6 +41,29 @@
 **FlowMorph Studio** is a high-performance video frame interpolation platform built entirely in Python. It converts standard 24 FPS or 30 FPS footage into silky smooth 60 FPS, 120 FPS, or 240 FPS video using OpenCV's Dense Inverse Search (DIS) optical flow engine.
 
 Unlike heavy deep-learning interpolation models that require gigabytes of neural weights and high-end CUDA GPUs, FlowMorph Studio runs directly on consumer CPUs with near-instant startup, predictable memory footprints, and mathematical stability.
+
+---
+
+## Web Version (Native C++ / WebAssembly)
+
+No installation needed: **[flowmorph.vercel.app](https://flowmorph.vercel.app/)**
+
+This is not a different engine. The interpolation pipeline in
+`core/interpolator.py` - DIS optical flow, bilateral smoothing, bilinear backward
+warping and occlusion-weighted photometric blending - was ported line by line to
+C++ and compiled to WebAssembly against the same OpenCV 5.0.0. On identical input
+and preset, the final frames differ by at most 1-2 levels out of 255 (PSNR 84-86 dB)
+from what this Python app writes, and the occlusion weight is bit-identical.
+
+- Runs locally in the browser: no upload, no account, no watermark, no frame cap
+  beyond the browser's own memory
+- WebCodecs for decode and encode; the source audio track is passed through untouched
+- Output is MP4 (H.264, HEVC or AV1) or WebM (VP9 or AV1), depending on what the
+  browser can encode
+- Scalar and SIMD128 builds, with a multi-threaded build used automatically when the
+  browser allows it
+
+Free, and no sign-up: <https://flowmorph.vercel.app/>
 
 ---
 
@@ -65,6 +89,7 @@ Generative AI video pipelines (such as Google Flow) often produce footage at low
 
 ## Key Features
 
+- **No-Install Web App**: the same pipeline, ported to C++ and WebAssembly, runs at [flowmorph.vercel.app](https://flowmorph.vercel.app/) with no upload, no account and no watermark.
 - **Native Python Desktop GUI**: Built with CustomTkinter and Pillow, featuring a modern dark-mode aesthetic color-matched to the official brand identity.
 - **Strictly No Emojis**: 100% vector-rendered, high-DPI icons for every button, action, and indicator.
 - **CPU & NVIDIA GPU Acceleration**: Choose between multi-threaded CPU rendering or NVIDIA GPU hardware acceleration (NVENC / Media Foundation MFT) with automatic driver detection and fallback.
@@ -80,6 +105,9 @@ Generative AI video pipelines (such as Google Flow) often produce footage at low
 ---
 
 ## Quick Start
+
+**Prefer no installation?** The same engine runs in the browser at
+[flowmorph.vercel.app](https://flowmorph.vercel.app/).
 
 ### 1. Standalone Executable (Windows 10/11 x64)
 No Python installation or manual dependencies required:
